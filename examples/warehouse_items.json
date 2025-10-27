@@ -1,0 +1,18 @@
+[
+  {
+    "code": "ART-0001",
+    "description": "Phillips screwdriver",
+    "warehouse_location": "MAG-A",
+    "shelf": 1,
+    "shelf_relative_position": 1
+  },
+  {
+    "code": "ART-0002",
+    "description": "500g hammer",
+    "warehouse_location": "MAG-A",
+    "shelf": 2,
+    "shelf_relative_position": 8
+  }
+]
+
+

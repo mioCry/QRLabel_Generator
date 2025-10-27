@@ -1,0 +1,27 @@
+[
+  {
+    "text": "https://www.rust-lang.org",
+    "filename": "rust_website.png",
+    "size": 200
+  },
+  {
+    "text": "mailto:info@example.com",
+    "filename": "email_contact.png",
+    "size": 150
+  },
+  {
+    "text": "tel:+39123456789",
+    "filename": "phone_number.png",
+    "size": 180
+  },
+  {
+    "text": "Hello! This is a QR code generated with Rust!",
+    "filename": "english_message.png",
+    "size": 250
+  },
+  {
+    "text": "WIFI:T:WPA;S:MyNetwork;P:password123;H:false;;",
+    "filename": "wifi_config.png",
+    "size": 200
+  }
+]

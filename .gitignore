@@ -1,0 +1,30 @@
+# Rust
+/target/
+**/*.rs.bk
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Output files
+*.png
+*.jpg
+*.jpeg
+output/
+output_*/
+
+# Logs
+*.log
+
+# PDF generated files
+*.pdf
+
+# Temporary folders
+temp_qr_images/
+output_test/

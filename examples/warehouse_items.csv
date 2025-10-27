@@ -1,0 +1,28 @@
+code,description,warehouse_location,shelf,shelf_relative_position,size
+ART-0001,Phillips screwdriver,MAG-A,1,1,220
+ART-0002,Hammer 500g,MAG-A,2,8,200
+ART-0003,Adjustable prova,MAG-A,3,5,210
+ART-0004,Pliers set,MAG-B,1,3,220
+ART-0005,Flat head screwdriver,MAG-B,2,7,200
+ART-0006,Tape measure 5m,MAG-B,3,2,215
+ART-0007,Spirit level 60cm,MAG-C,1,4,210
+ART-0008,Drill bit set,MAG-C,2,9,220
+ART-0009,Saw blade set,MAG-C,3,1,200
+ART-0010,Socket wrench set,MAG-D,1,6,210
+ART-0011,Allen wrench set,MAG-D,2,5,220
+ART-0012,Paint brush set,MAG-D,3,8,200
+ART-0013,Paint roller 25cm,MAG-E,1,2,215
+ART-0014,Sandpaper assortment,MAG-E,2,4,210
+ART-0015,Caulk gun professional,MAG-E,3,7,220
+ART-0016,Flashlight LED,MAG-F,1,1,200
+ART-0017,Battery pack AA,MAG-F,2,3,210
+ART-0018,Safety gloves,MAG-F,3,5,220
+ART-0019,Safety glasses,MAG-G,1,2,200
+ART-0020,Work apron,MAG-G,2,4,210
+ART-0021,Tool belt leather,MAG-G,3,6,220
+ART-0022,Ladder 2m aluminum,MAG-H,1,1,200
+ART-0023,Scaffolding clamp,MAG-H,2,3,215
+ART-0024,Cable ties bundle,MAG-H,3,5,200
+ART-0025,Wire connector set,MAG-I,1,2,210
+
+
