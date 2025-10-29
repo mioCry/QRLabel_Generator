@@ -178,7 +178,7 @@ fn main() -> anyhow::Result<()> {
     };
 
     let gen = QrGenerator::new();
-    gen.generate_from_warehouse_item(&item, "./output_test/magazzino_art1.png", 220)?;
+    gen.generate_from_warehouse_item(&item, "./output_test/warehouse_art1.png", 220)?;
     Ok(())
 }
 ```
