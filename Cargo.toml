@@ -5,10 +5,9 @@ edition = "2021"
 authors = ["Cristiano Cuttica cristiano.cuttica@yahoo.it"]
 description = "Libreria per generare immagini QR code, con supporto batch"
 license = "MIT OR Apache-2.0"
-# TODO: Aggiorna con il tuo username GitHub dopo aver creato il repository
-# repository = "https://github.com/tuo-username/qr-label-generator"
-# homepage = "https://github.com/tuo-username/qr-label-generator"
-# documentation = "https://docs.rs/qr-label-generator"
+repository = "https://github.com/mioCry/QRLabel_Generator"
+homepage = "https://github.com/mioCry/QRLabel_Generator"
+documentation = "https://docs.rs/qr-label-generator"
 readme = "README.md"
 keywords = ["qr", "qrcode", "image", "generator", "label", "warehouse"]
 categories = ["encoding", "graphics", "command-line-utilities"]
