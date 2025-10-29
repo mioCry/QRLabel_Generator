@@ -73,6 +73,13 @@ impl PdfLabelGenerator {
     }
 
     /// Generates a PDF with labels from a CSV file
+    ///
+    /// # Arguments
+    /// * `csv_file` - Path to CSV file with warehouse item data
+    /// * `output_pdf` - Path where the PDF file will be saved
+    ///
+    /// # CSV Format
+    /// The CSV file should have headers: `code,description,warehouse_location,shelf,shelf_relative_position,size`
     pub fn generate_pdf_from_csv(&self, csv_file: &str, output_pdf: &str) -> Result<()> {
         use csv::Reader;
         use serde::Deserialize;
@@ -106,6 +113,10 @@ impl PdfLabelGenerator {
     }
 
     /// Generates a PDF with labels from a JSON file
+    ///
+    /// # Arguments
+    /// * `json_file` - Path to JSON file with warehouse item data (array of `WarehouseItem`)
+    /// * `output_pdf` - Path where the PDF file will be saved
     pub fn generate_pdf_from_json(&self, json_file: &str, output_pdf: &str) -> Result<()> {
         let content = std::fs::read_to_string(json_file)?;
         let items: Vec<WarehouseItem> = serde_json::from_str(&content)?;
@@ -113,6 +124,10 @@ impl PdfLabelGenerator {
     }
 
     /// Generates a PDF with labels for the provided items
+    ///
+    /// # Arguments
+    /// * `items` - Slice of warehouse items to generate labels for
+    /// * `output_file` - Path where the PDF file will be saved
     pub fn generate_pdf(&self, items: &[WarehouseItem], output_file: &str) -> Result<()> {
         // Create PDF document (A4: 210mm x 297mm)
         let (doc, page1, layer1) = PdfDocument::new("Warehouse Labels", Mm(210.0), Mm(297.0), "Layer 1");
@@ -361,6 +376,12 @@ impl PdfLabelGenerator {
     }
 
     /// Generates an HTML file for those who prefer HTML format
+    ///
+    /// The HTML file can be opened in a browser and printed to PDF.
+    ///
+    /// # Arguments
+    /// * `items` - Slice of warehouse items to generate labels for
+    /// * `output_file` - Path where the HTML file will be saved
     pub fn generate_html(&self, items: &[WarehouseItem], output_file: &str) -> Result<()> {
         // Create a directory for QR images
         let qr_dir = "temp_qr_images";

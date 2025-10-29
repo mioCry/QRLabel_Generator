@@ -1,15 +1,22 @@
 use serde::{Deserialize, Serialize};
 
+/// Warehouse item structure for label generation
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WarehouseItem {
+    /// Unique item code/identifier
     pub code: String,
+    /// Item description
     pub description: String,
+    /// Warehouse location identifier
     pub warehouse_location: String,
+    /// Shelf number
     pub shelf: u32,
+    /// Position on the shelf
     pub shelf_relative_position: u32,
 }
 
 impl WarehouseItem {
+    /// Returns formatted shelf position string (e.g., "S001-P001")
     pub fn formatted_shelf_position(&self) -> String {
         format!("S{:03}-P{:03}", self.shelf, self.shelf_relative_position)
     }

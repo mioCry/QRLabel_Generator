@@ -2,8 +2,8 @@
 name = "qr-label-generator"
 version = "0.1.0"
 edition = "2021"
-authors = ["Cristiano Cuttica cristiano.cuttica@yahoo.it"]
-description = "Libreria per generare immagini QR code, con supporto batch"
+authors = ["Cristiano Cuttica <cristiano.cuttica@yahoo.it>"]
+description = "Rust library to generate QR code images, with batch generation support from JSON and CSV files. Includes warehouse label generation with PDF output."
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/mioCry/QRLabel_Generator"
 homepage = "https://github.com/mioCry/QRLabel_Generator"
@@ -11,6 +11,19 @@ documentation = "https://docs.rs/qr-label-generator"
 readme = "README.md"
 keywords = ["qr", "qrcode", "image", "generator", "label", "warehouse"]
 categories = ["encoding", "graphics", "command-line-utilities"]
+exclude = [
+    "target/",
+    "output_test/",
+    "temp_qr_images/",
+    "*.png",
+    "*.pdf",
+    "*.jpg",
+    "*.jpeg",
+    ".DS_Store",
+    ".git/",
+    ".gitignore",
+    "test.png",
+]
 
 [lib]
 name = "qr_label_generator"

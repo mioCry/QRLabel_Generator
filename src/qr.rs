@@ -6,13 +6,18 @@ use serde::{Deserialize, Serialize};
 use crate::config::Config;
 use crate::warehouse::WarehouseItem;
 
+/// Data structure for QR code generation from JSON/CSV files
 #[derive(Debug, Serialize, Deserialize)]
 pub struct QrData {
+    /// The text or URL to encode in the QR code
     pub text: String,
+    /// Output filename for the generated QR code image
     pub filename: String,
+    /// Optional size in pixels (defaults to 200 if not specified)
     pub size: Option<u32>,
 }
 
+/// QR code generator with configurable error correction and colors
 pub struct QrGenerator {
     error_correction_level: qrcode::EcLevel,
     foreground_color: Rgb<u8>,
@@ -51,6 +56,19 @@ impl QrGenerator {
         }
     }
 
+    /// Generates a single QR code image from text
+    ///
+    /// # Arguments
+    /// * `text` - The text or URL to encode in the QR code
+    /// * `output_path` - Path where the PNG image will be saved
+    /// * `size` - Size of the output image in pixels (square)
+    ///
+    /// # Example
+    /// ```
+    /// use qr_label_generator::QrGenerator;
+    /// let gen = QrGenerator::new();
+    /// gen.generate_single("https://example.com", "qr.png", 300)?;
+    /// ```
     pub fn generate_single(&self, text: &str, output_path: &str, size: u32) -> Result<()> {
         let code = QrCode::with_error_correction_level(text, self.error_correction_level)?;
         let image = self.qr_to_image(&code, size);
@@ -58,6 +76,21 @@ impl QrGenerator {
         Ok(())
     }
 
+    /// Generates multiple QR codes from a JSON file
+    ///
+    /// The JSON file should contain an array of `QrData` objects.
+    ///
+    /// # Arguments
+    /// * `input_file` - Path to JSON file with QR code data
+    /// * `output_dir` - Directory where generated QR code images will be saved
+    ///
+    /// # Example JSON format
+    /// ```json
+    /// [
+    ///   {"text": "https://example.com", "filename": "website.png", "size": 200},
+    ///   {"text": "mailto:info@example.com", "filename": "email.png", "size": 150}
+    /// ]
+    /// ```
     pub fn generate_batch(&self, input_file: &str, output_dir: &str) -> Result<()> {
         // Create output folder if it doesn't exist
         fs::create_dir_all(output_dir)?;
@@ -75,6 +108,21 @@ impl QrGenerator {
     }
 
     /// Generates QR codes from generic CSV with headers: text,filename,size
+    ///
+    /// # Arguments
+    /// * `csv_file` - Path to CSV file with QR code data
+    /// * `output_dir` - Directory where generated QR code images will be saved
+    ///
+    /// # CSV Format
+    /// The CSV file should have headers: `text,filename,size`
+    /// The `size` column is optional.
+    ///
+    /// # Example
+    /// ```csv
+    /// text,filename,size
+    /// https://example.com,website.png,200
+    /// mailto:info@example.com,email.png,150
+    /// ```
     pub fn generate_batch_from_csv(&self, csv_file: &str, output_dir: &str) -> Result<()> {
         use std::fs;
         fs::create_dir_all(output_dir)?;
@@ -88,8 +136,22 @@ impl QrGenerator {
         Ok(())
     }
 
-    /// Generates QR codes from warehouse CSV with headers:
-    /// code,description,warehouse_location,shelf,shelf_relative_position,size(optional)
+    /// Generates QR codes from warehouse CSV file
+    ///
+    /// # Arguments
+    /// * `csv_file` - Path to CSV file with warehouse item data
+    /// * `output_dir` - Directory where generated QR code images will be saved
+    /// * `default_size` - Default size in pixels if not specified in CSV
+    ///
+    /// # CSV Format
+    /// The CSV file should have headers: `code,description,warehouse_location,shelf,shelf_relative_position,size`
+    /// The `size` column is optional.
+    ///
+    /// # Example
+    /// ```csv
+    /// code,description,warehouse_location,shelf,shelf_relative_position,size
+    /// ART-0001,Phillips screwdriver,MAG-A,1,1,220
+    /// ```
     pub fn generate_warehouse_batch_from_csv(&self, csv_file: &str, output_dir: &str, default_size: Option<u32>) -> Result<()> {
         use std::fs;
         fs::create_dir_all(output_dir)?;
@@ -138,12 +200,25 @@ impl QrGenerator {
     }
 
     /// Generates a QR code for a `WarehouseItem` using the shelf format `Sxxx-Pxxx`
+    ///
+    /// The QR code contains a JSON payload with all item details.
+    ///
+    /// # Arguments
+    /// * `item` - The warehouse item to generate QR code for
+    /// * `output_path` - Path where the PNG image will be saved
+    /// * `size` - Size of the output image in pixels (square)
     pub fn generate_from_warehouse_item(&self, item: &WarehouseItem, output_path: &str, size: u32) -> Result<()> {
         let text = item.to_qr_text();
         self.generate_single(&text, output_path, size)
     }
 
-    /// Generates QR codes from a JSON file containing a list of `WarehouseItem`.
+    /// Generates QR codes from a JSON file containing a list of `WarehouseItem`
+    ///
+    /// # Arguments
+    /// * `input_file` - Path to JSON file with warehouse item data
+    /// * `output_dir` - Directory where generated QR code images will be saved
+    /// * `default_size` - Default size in pixels (defaults to 200 if not specified)
+    ///
     /// The JSON file must be an array of `WarehouseItem` objects.
     pub fn generate_warehouse_batch(&self, input_file: &str, output_dir: &str, default_size: Option<u32>) -> Result<()> {
         use std::fs;

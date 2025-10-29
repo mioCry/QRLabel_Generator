@@ -138,20 +138,6 @@ Create the file `examples.json`:
 
 Then use `QrGenerator::generate_batch` in your code.
 
-### Extracting QR from SVG file
-
-The library can rasterize an SVG file and decode any QR codes contained within.
-
-```rust
-use qr_label_generator::QrGenerator;
-
-fn main() -> anyhow::Result<()> {
-    let gen = QrGenerator::new();
-    let payloads = gen.extract_qr_from_svg("./examples/qr_layout.svg")?;
-    for p in payloads { println!("{}", p); }
-    Ok(())
-}
-```
 
 ## Development
 
