@@ -1,7 +1,7 @@
 use qr_label_generator::{PdfLabelGenerator, LabelLayout, QrContentMode};
 
 fn main() -> anyhow::Result<()> {
-    // Example 1: Generate PDF from CSV with default layout (3x7 = 21 labels per page)
+    // Example 1: Generate PDF from CSV with default layout (3x4 = 12 labels per page)
     println!("Generating PDF from CSV with default layout...");
     let generator = PdfLabelGenerator::new();
     generator.generate_pdf_from_csv(
@@ -52,10 +52,10 @@ fn main() -> anyhow::Result<()> {
 
     println!("\n✓ All PDF files have been generated successfully!");
     println!("\nSummary:");
-    println!("  - warehouse_labels_default.pdf: Standard 3x7 layout (25 labels on 2 pages)");
+    println!("  - warehouse_labels_default.pdf: Standard 3x4 layout (12 labels per page, 25 labels total = 3 pages)");
     println!("  - warehouse_labels_from_json.pdf: From JSON file (2 labels on 1 page)");
-    println!("  - warehouse_labels_custom.pdf: Custom 2x3 layout (25 labels on 5 pages)");
-    println!("  - warehouse_labels_compact.pdf: Compact 4x5 layout (25 labels on 2 pages)");
+    println!("  - warehouse_labels_custom.pdf: Custom 2x3 layout (6 labels per page, 25 labels total = 5 pages)");
+    println!("  - warehouse_labels_compact.pdf: Compact 4x5 layout (20 labels per page, 25 labels total = 2 pages)");
     println!("\nYou can open the PDFs with any PDF viewer!");
 
     Ok(())
